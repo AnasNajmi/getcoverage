@@ -122,10 +122,10 @@ const ContactUsSection = () => {
                 </div>
               </div>
               <div>
-                <h4 className="text-base font-bold uppercase text-[#0b1d3c]">
+                {/* <h4 className="text-base font-bold uppercase text-[#0b1d3c]">
                   Social Address
-                </h4>
-                <div className="mt-5 flex flex-wrap gap-3">
+                </h4> */}
+                {/* <div className="mt-5 flex flex-wrap gap-3">
                   {socialLinks.map(({ icon: Icon, href, label, bgColor }) => (
                     <Link
                       key={label}
@@ -137,7 +137,7 @@ const ContactUsSection = () => {
                       <Icon className="h-5 w-5" strokeWidth={2.2} />
                     </Link>
                   ))}
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="relative overflow-hidden rounded-[28px]">
@@ -153,7 +153,7 @@ const ContactUsSection = () => {
           </div>
 
           <div className="flex flex-col justify-center">
-            <div className="flex flex-col gap-2 text-left">
+            {/* <div className="flex flex-col gap-2 text-left">
               <p className="text-sm font-semibold uppercase tracking-[0.38em] text-[#ff2d7b]">
                 We&apos;re Ready To Help You
               </p>
@@ -164,8 +164,8 @@ const ContactUsSection = () => {
                 Share a few details about your property claim and our health
                 insurance specialists will get in touch shortly.
               </p>
-            </div>
-            <form className="mt-8 flex flex-col gap-5">
+            </div> */}
+            <form className="mt-6 flex flex-col gap-5">
               <label className="flex flex-col gap-2 text-sm font-medium text-[#0d1f3f]">
                 <span>Your Name</span>
                 <input

@@ -7,14 +7,28 @@ import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/s
 import { Menu } from "lucide-react";
 
 const navLinks = [
-  { href: "/medicare-advantage", label: "MEDICARE ADVANTAGE PLANS" },
-  { href: "/about", label: "ABOUT" },
-  { href: "/reviews", label: "REVIEWS" },
-  { href: "/faqs", label: "FAQS" },
-  { href: "/contact", label: "CONTACT" },
+  { href: "#medicare-advantage", label: "MEDICARE ADVANTAGE PLANS" },
+  { href: "#about", label: "ABOUT" },
+  // { href: "#reviews", label: "REVIEWS" },
+  { href: "#faqs", label: "FAQS" },
+  { href: "#contact", label: "CONTACT" },
 ];
 
 const Navbar = () => {
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      const navbarHeight = 80; // Navbar height (h-16 sm:h-20 = 64px/80px)
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navbarHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,13 +47,14 @@ const Navbar = () => {
 
           <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navLinks.map(({ href, label }) => (
-              <Link
+              <a
                 key={href}
                 href={href}
-                className="text-gray-700 hover:text-cyan-500 text-sm font-medium transition-colors"
+                onClick={(e) => handleSmoothScroll(e, href)}
+                className="text-gray-700 hover:text-cyan-500 text-sm font-medium transition-colors cursor-pointer"
               >
                 {label}
-              </Link>
+              </a>
             ))}
           </div>
 
@@ -65,12 +80,13 @@ const Navbar = () => {
                   <nav className="flex flex-col space-y-4">
                     {navLinks.map(({ href, label }) => (
                       <SheetClose key={href} asChild>
-                        <Link
+                        <a
                           href={href}
-                          className="text-gray-700 hover:text-cyan-500 text-base font-medium transition-colors"
+                          onClick={(e) => handleSmoothScroll(e, href)}
+                          className="text-gray-700 hover:text-cyan-500 text-base font-medium transition-colors cursor-pointer"
                         >
                           {label}
-                        </Link>
+                        </a>
                       </SheetClose>
                     ))}
                   </nav>

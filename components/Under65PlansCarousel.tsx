@@ -96,20 +96,18 @@ const Under65PlansCarousel = () => {
   }, [emblaApi, onReInit, onSelect]);
 
   return (
-    <section className="bg-[#f8fbff] py-16 sm:py-20 lg:py-24">
+    <section id="medicare-advantage" className="bg-[#f8fbff] py-16 sm:py-20 lg:py-24">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-[0.95rem] font-semibold uppercase tracking-[0.38em] text-[#00a4f4] sm:text-base">
             Health Insurance
           </p>
           <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#041a4b] sm:text-[2.5rem] sm:leading-[1.15]">
-            Health Insurance Plans Under 65
+            MEDICARE ADVANTAGE
           </h2>
+          <h3>Explore Your Medicare Advantage Plan Options</h3>
           <p className="mt-4 text-base leading-relaxed text-[#667085] sm:text-lg">
-            Our Under-65 Health Plans are designed to meet your healthcare needs
-            and budget. Choose a network of trusted providers, get preventive
-            care, and enjoy coverage that keeps you and your family protected
-            year-round.
+            Our Medicare Advantage Plans are designed to meet your healthcare needs and budget. Choose a network of trusted providers, get preventive care, and enjoy comprehensive coverage that keeps you protected year-round.
           </p>
         </div>
 
