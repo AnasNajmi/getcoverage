@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
@@ -12,6 +12,63 @@ const HeroSection = () => {
     phone: '',
     zipCode: '',
   });
+  const [isHighlighted, setIsHighlighted] = useState(false);
+  const firstNameInputRef = useRef<HTMLInputElement>(null);
+  const formCardRef = useRef<HTMLDivElement>(null);
+
+  const handleFreeConsultationClick = () => {
+    const contactSection = document.querySelector('#contact');
+    if (contactSection) {
+      const navbarHeight = 80;
+      const elementPosition = contactSection.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navbarHeight - 20;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  useEffect(() => {
+    // Custom event handler for "Talk to Agent" clicks
+    const handleTalkToAgent = () => {
+      if (formCardRef.current) {
+        const navbarHeight = 80;
+        const elementPosition = formCardRef.current.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight - 20; // Extra 20px padding
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+
+        // Add highlight effect
+        setIsHighlighted(true);
+        
+        // Focus the first name input after scrolling
+        setTimeout(() => {
+          if (firstNameInputRef.current) {
+            firstNameInputRef.current.focus();
+            // Ensure focus is visible on mobile devices
+            firstNameInputRef.current.click();
+          }
+        }, 1000);
+
+        // Remove highlight after animation (6 seconds)
+        setTimeout(() => {
+          setIsHighlighted(false);
+        }, 6000);
+      }
+    };
+
+    // Listen for custom event
+    window.addEventListener('talkToAgentClick', handleTalkToAgent);
+    
+    return () => {
+      window.removeEventListener('talkToAgentClick', handleTalkToAgent);
+    };
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,35 +96,38 @@ const HeroSection = () => {
 
       {/* <div className="absolute inset-0 bg-cyan-400/40"></div> */}
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-40 sm:pb-48 lg:pb-56">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          <div className="space-y-6 sm:space-y-8">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-6xl font-bold leading-tight">
-              <span className="block whitespace-nowrap">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-16 pb-32 sm:pb-40 lg:pb-56">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
+          <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+            <h1 className="font-bold leading-tight">
+              <span className="block text-[clamp(1.5rem,5vw,3.75rem)] sm:whitespace-nowrap">
                 <span className="text-white">Get </span>
                 <span className="text-gray-900">Coverage </span>
                 <span className="text-white">Online</span>
               </span>
-              <span className="block whitespace-nowrap">
+              <span className="block text-[clamp(1.5rem,5vw,3.75rem)] sm:whitespace-nowrap">
                 <span className="text-white">Health </span>
                 <span className="text-gray-900">Insurance </span>
                 <span className="text-white">Plans</span>
               </span>
-              <span className="block whitespace-nowrap">
+              <span className="block text-[clamp(1.5rem,5vw,3.75rem)] sm:whitespace-nowrap">
                 <span className="text-white">for </span>
                 <span className="text-gray-900">Under 65</span>
               </span>
             </h1>
 
-            <p className="text-gray-800 text-base sm:text-lg lg:text-xl max-w-xl leading-relaxed">
+            <p className="text-gray-800 text-sm sm:text-base lg:text-lg xl:text-xl max-w-xl leading-relaxed pr-0 sm:pr-4">
               Get Coverage Online Health Insurance Plans help individuals under
               65 find affordable, flexible coverage options with added benefits.
               Choose from major providers with nationwide networks and rates
               starting at $0 monthly.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <Button className="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-semibold px-8 py-6 rounded-full text-base sm:text-lg shadow-lg transition-all">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+              <Button 
+                onClick={handleFreeConsultationClick}
+                className="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-semibold px-6 sm:px-8 py-4 sm:py-6 rounded-full text-sm sm:text-base lg:text-lg shadow-lg transition-all"
+              >
                 FREE CONSULTATION
               </Button>
 
@@ -87,38 +147,46 @@ const HeroSection = () => {
             </div> */}
           </div>
 
-          <div className="w-full max-w-md lg:max-w-lg mx-auto lg:ml-auto lg:mr-0">
-            <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 space-y-6">
+          <div className="w-full max-w-md lg:max-w-lg mx-auto lg:ml-auto lg:mr-0 mt-8 lg:mt-0" id="contact-form">
+            <div 
+              ref={formCardRef}
+              className={`bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 transition-all duration-300 ${
+                isHighlighted 
+                  ? 'ring-4 ring-cyan-400 animate-pulse-glow shadow-2xl' 
+                  : 'shadow-2xl'
+              }`}
+            >
               <div className="flex items-start justify-between gap-4">
                 <Image
                   src="/trust.png"
                   alt="Trustpilot rating"
                   width={120}
                   height={24}
-                  className="h-10 w-auto"
+                  className="h-8 sm:h-10 w-auto"
                 />
               </div>
 
               <div className="space-y-2">
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 leading-tight">
                   Speak To Us Today & Check Medicare Coverage Plans
                 </h2>
-                <p className="text-sm text-gray-600">
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                   Let our welcoming team of experts lead you to the ideal
                   Medicare plan that aligns perfectly with your needs
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+                <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                   <input
+                    ref={firstNameInputRef}
                     type="text"
                     placeholder="First Name"
                     value={formData.firstName}
                     onChange={(e) =>
                       setFormData({ ...formData, firstName: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-sm"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-sm"
                     required
                   />
                   <input
@@ -128,7 +196,7 @@ const HeroSection = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, lastName: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-sm"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-sm"
                     required
                   />
                 </div>
@@ -140,7 +208,7 @@ const HeroSection = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, phone: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-sm"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-sm"
                   required
                 />
 
@@ -151,18 +219,18 @@ const HeroSection = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, zipCode: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-sm"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-sm"
                   required
                 />
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-semibold py-6 rounded-full text-base shadow-lg transition-all"
+                  className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-semibold py-4 sm:py-6 rounded-full text-sm sm:text-base shadow-lg transition-all"
                 >
                   Call Me Back
                 </Button>
 
-                <p className="text-xs text-gray-500 text-center leading-relaxed">
+                <p className="text-[10px] sm:text-xs text-gray-500 text-center leading-relaxed px-2">
                   Please read and agree{' '}
                   <span className="font-semibold text-gray-700">
                     Terms & Conditions

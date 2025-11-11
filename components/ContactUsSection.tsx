@@ -85,7 +85,7 @@ const ContactUsSection = () => {
                   Our Office Address
                 </h3>
                 <div className="mt-5 flex flex-col gap-6">
-                  <div className="flex gap-4">
+                  <div className="flex items-center gap-4">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center text-[#3b82f6]">
                       <MapPin className="h-5 w-5" strokeWidth={2.5} />
                     </div>
@@ -97,7 +97,7 @@ const ContactUsSection = () => {
                       United States
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="flex items-center gap-4">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center text-[#3b82f6]">
                       <Phone className="h-5 w-5" strokeWidth={2.5} />
                     </div>
@@ -108,7 +108,7 @@ const ContactUsSection = () => {
                       +971 52 574 4108
                     </Link>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="flex items-center gap-4">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center text-[#3b82f6]">
                       <Mail className="h-5 w-5" strokeWidth={2.5} />
                     </div>

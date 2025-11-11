@@ -1,6 +1,5 @@
-import type { Config } from 'tailwindcss';
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+const config = {
   darkMode: ['class'],
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -78,10 +77,19 @@ const config: Config = {
             height: '0',
           },
         },
+        'pulse-glow': {
+          '0%, 100%': {
+            boxShadow: '0 0 20px rgba(34, 211, 238, 0.4), 0 0 40px rgba(34, 211, 238, 0.2), 0 20px 60px rgba(0, 0, 0, 0.1)',
+          },
+          '50%': {
+            boxShadow: '0 0 30px rgba(34, 211, 238, 0.6), 0 0 60px rgba(34, 211, 238, 0.4), 0 20px 60px rgba(0, 0, 0, 0.1)',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'pulse-glow': 'pulse-glow 1.5s ease-in-out infinite',
       },
     },
   },

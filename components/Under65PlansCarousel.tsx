@@ -61,6 +61,11 @@ const Under65PlansCarousel = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
+  const handleTalkToAgentClick = () => {
+    // Dispatch custom event that HeroSection will listen for
+    window.dispatchEvent(new CustomEvent('talkToAgentClick'));
+  };
+
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
@@ -159,7 +164,8 @@ const Under65PlansCarousel = () => {
                         <div>
                           <button
                             type="button"
-                            className="inline-flex items-center justify-center rounded-full bg-[#34b6f5] px-6 py-3 text-sm font-semibold uppercase tracking-[0.28em] text-white transition hover:bg-[#249cd6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0b5bb5] sm:text-base"
+                            onClick={handleTalkToAgentClick}
+                            className="inline-flex items-center justify-center rounded-full bg-[#34b6f5] px-6 py-3 text-sm font-semibold uppercase tracking-[0.28em] text-white transition hover:bg-[#249cd6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0b5bb5] sm:text-base cursor-pointer"
                           >
                             {ctaLabel}
                           </button>

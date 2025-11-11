@@ -29,6 +29,13 @@ const Navbar = () => {
       });
     }
   };
+
+  const handleTalkToAgentClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    // Dispatch custom event that HeroSection will listen for
+    window.dispatchEvent(new CustomEvent('talkToAgentClick'));
+  };
+
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,7 +66,10 @@ const Navbar = () => {
           </div>
 
           <div className="hidden lg:flex items-center">
-            <Button className="bg-cyan-400 hover:bg-cyan-500 text-white font-medium px-5 sm:px-5 py-2 rounded-full text-sm transition-colors">
+            <Button 
+              onClick={handleTalkToAgentClick}
+              className="bg-cyan-400 hover:bg-cyan-500 text-white font-medium px-5 sm:px-5 py-2 rounded-full text-sm transition-colors"
+            >
               TALK TO AGENT
             </Button>
           </div>
@@ -91,7 +101,10 @@ const Navbar = () => {
                     ))}
                   </nav>
                   <SheetClose asChild>
-                    <Button className="w-full bg-cyan-400 hover:bg-cyan-500 text-white font-medium px-5 py-2 rounded-full text-sm transition-colors">
+                    <Button 
+                      onClick={handleTalkToAgentClick}
+                      className="w-full bg-cyan-400 hover:bg-cyan-500 text-white font-medium px-5 py-2 rounded-full text-sm transition-colors"
+                    >
                       TALK TO AGENT
                     </Button>
                   </SheetClose>
