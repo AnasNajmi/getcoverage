@@ -123,7 +123,13 @@ const HeroSection = () => {
 
             <p className="text-gray-800 text-sm sm:text-base lg:text-lg xl:text-xl max-w-xl leading-relaxed pr-0 sm:pr-4">
               We specialize in Health Insurance for Individuals Under 65, ACA (Marketplace) Plans, and Medicare Options.
+            </p>
+
+            <p className="text-gray-800 text-sm sm:text-base lg:text-lg xl:text-xl max-w-xl leading-relaxed pr-0 sm:pr-4">
               Find affordable, flexible coverage from major nationwide providers — with plans starting as low as $0 per month. Whether you need individual coverage, family plans, or Medicare solutions, we make it easy to compare, choose, and get covered online.
+            </p>
+
+            <p className="text-gray-800 text-sm sm:text-base lg:text-lg xl:text-xl max-w-xl leading-relaxed pr-0 sm:pr-4 font-semibold">
               Explore Your Options Today — Get Coverage Online!
             </p>
 
