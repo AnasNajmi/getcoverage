@@ -106,30 +106,34 @@ const HeroSection = () => {
                 <span className="text-white">Online</span>
               </span>
               <span className="block text-[clamp(1.5rem,5vw,3.75rem)] sm:whitespace-nowrap">
-                <span className="text-white">Health </span>
-                <span className="text-gray-900">Insurance </span>
-                <span className="text-white">Plans</span>
+                <span className="text-white">Your </span>
+                <span className="text-gray-900">Trusted </span>
+                <span className="text-white">Insurance</span>
               </span>
               <span className="block text-[clamp(1.5rem,5vw,3.75rem)] sm:whitespace-nowrap">
+                <span className="text-gray-900">Agency </span>
                 <span className="text-white">for </span>
-                <span className="text-gray-900">Under 65</span>
+                <span className="text-gray-900">Affordable</span>
+              </span>
+              <span className="block text-[clamp(1.5rem,5vw,3.75rem)] sm:whitespace-nowrap">
+                <span className="text-white">Health </span>
+                <span className="text-gray-900">Plans</span>
               </span>
             </h1>
 
             <p className="text-gray-800 text-sm sm:text-base lg:text-lg xl:text-xl max-w-xl leading-relaxed pr-0 sm:pr-4">
-              Get Coverage Online Health Insurance Plans help individuals under
-              65 find affordable, flexible coverage options with added benefits.
-              Choose from major providers with nationwide networks and rates
-              starting at $0 monthly.
+              We specialize in Health Insurance for Individuals Under 65, ACA (Marketplace) Plans, and Medicare Options.
+              Find affordable, flexible coverage from major nationwide providers — with plans starting as low as $0 per month. Whether you need individual coverage, family plans, or Medicare solutions, we make it easy to compare, choose, and get covered online.
+              Explore Your Options Today — Get Coverage Online!
             </p>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-              <Button 
+              {/* <Button 
                 onClick={handleFreeConsultationClick}
                 className="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-semibold px-6 sm:px-8 py-4 sm:py-6 rounded-full text-sm sm:text-base lg:text-lg shadow-lg transition-all"
               >
                 FREE CONSULTATION
-              </Button>
+              </Button> */}
 
               <button className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full shadow-lg hover:scale-110 transition-transform">
                 <Play className="w-5 h-5 sm:w-6 sm:h-6 text-pink-500 fill-pink-500 ml-1" />
