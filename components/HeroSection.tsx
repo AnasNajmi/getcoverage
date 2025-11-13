@@ -141,9 +141,9 @@ const HeroSection = () => {
                 FREE CONSULTATION
               </Button> */}
 
-              <button className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full shadow-lg hover:scale-110 transition-transform">
+              {/* <button className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full shadow-lg hover:scale-110 transition-transform">
                 <Play className="w-5 h-5 sm:w-6 sm:h-6 text-pink-500 fill-pink-500 ml-1" />
-              </button>
+              </button> */}
             </div>
 
             {/* <div className="relative w-full max-w-md mt-8">
